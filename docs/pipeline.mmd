@@ -1,0 +1,41 @@
+
+flowchart LR
+    subgraph "Development"
+        DEV[Developers<br/>RHEL Machines]
+    end
+    
+    subgraph "Authentication"
+        AD[AD Authentication]
+    end
+    
+    subgraph "Jenkins CI/CD"
+        direction TB
+        J[Jenkins Server]
+        B[Build:<br/>- Compile Code<br/>- Run Tests<br/>- Create Artifacts]
+        D[Deploy:<br/>- Deploy to Test<br/>- Deploy to Prod]
+        J --> B
+        B --> D
+    end
+    
+    subgraph "Environments"
+        direction TB
+        T[Test Environment<br/>RHEL Server<br/>ML Apps]
+        P[Production Environment<br/>RHEL Server<br/>ML Apps]
+    end
+    
+    DEV -->|Code Commit| J
+    AD -.->|Auth| DEV
+    AD -.->|Auth| J
+    AD -.->|Auth| T
+    AD -.->|Auth| P
+    
+    D -->|Auto Deploy| T
+    D -->|Manual Approval| P
+    
+    T -.->|Validation| D
+    
+    style AD fill:#e1f5ff,stroke:#0066cc,stroke-width:3px
+    style B fill:#ffe6e6,stroke:#f44336,stroke-width:2px
+    style D fill:#e8f5e9,stroke:#4caf50,stroke-width:2px
+    style T fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
+    style P fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
