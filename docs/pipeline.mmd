@@ -1,4 +1,3 @@
-
 flowchart LR
     subgraph "Development"
         DEV[Developers<br/>RHEL Machines]
@@ -17,10 +16,26 @@ flowchart LR
         B --> D
     end
     
+    subgraph "Artifact Repository"
+        JFROG[JFrog Artifactory]
+    end
+    
     subgraph "Environments"
         direction TB
         T[Test Environment<br/>RHEL Server<br/>ML Apps]
         P[Production Environment<br/>RHEL Server<br/>ML Apps]
+    end
+    
+    subgraph "GPU-environment"
+        direction TB
+        GT[GPU Test]
+        GP[GPU Prod]
+    end
+    
+    subgraph "Rancher Kubernetes Environment"
+        direction TB
+        RT[Test Cluster]
+        RP[Prod Cluster]
     end
     
     DEV -->|Code Commit| J
@@ -29,13 +44,23 @@ flowchart LR
     AD -.->|Auth| T
     AD -.->|Auth| P
     
+    B -->|Store Artifacts| JFROG
     D -->|Auto Deploy| T
     D -->|Manual Approval| P
+    D -->|Deploy| GT
+    D -->|Deploy| GP
+    D -->|Deploy| RT
+    D -->|Deploy| RP
     
     T -.->|Validation| D
     
     style AD fill:#e1f5ff,stroke:#0066cc,stroke-width:3px
     style B fill:#ffe6e6,stroke:#f44336,stroke-width:2px
     style D fill:#e8f5e9,stroke:#4caf50,stroke-width:2px
+    style JFROG fill:#e0f2f1,stroke:#00897b,stroke-width:2px
     style T fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
     style P fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
+    style GT fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    style GP fill:#f8bbd0,stroke:#880e4f,stroke-width:2px
+    style RT fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style RP fill:#bbdefb,stroke:#0d47a1,stroke-width:2px
