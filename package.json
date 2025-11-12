@@ -1,0 +1,26 @@
+{
+  "name": "mlops-arkitektur",
+  "version": "1.0.0",
+  "description": "Indeholder Mermaid diagrammer på en eksempel MLOps stack template.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tv2-mle/mlops-arkitektur.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tv2-mle/mlops-arkitektur/issues"
+  },
+  "homepage": "https://github.com/tv2-mle/mlops-arkitektur#readme",
+  "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^11.12.0"
+  }
+}
